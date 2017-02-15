@@ -9,6 +9,7 @@ ajv.addSchema(require('../schemas/search-result.json'), 'search-result');
 ajv.addSchema(require('../schemas/album-product.json'), 'album-product');
 ajv.addSchema(require('../schemas/album-info.json'), 'album-info');
 ajv.addSchema(require('../schemas/album-fans.json'), 'album-fans');
+ajv.addSchema(require('../schemas/fan-info.json'), 'fan-info');
 
 function fixture(filename) {
   var filepath = path.join(__dirname, 'fixtures', filename + '.html');
@@ -92,6 +93,16 @@ describe("htmlParser", function () {
       var html = fixture('album');
       var albumFams = htmlParser.parseAlbumFans(html, 'http://musique.coeurdepirate.com/album/blonde');
       expect(ajv.validate('album-fans', albumFams)).toBe(true);
+    });
+
+  });
+
+  describe("parseFanInfo", function () {
+
+    it("parse fan info", function () {
+      var html = fixture('fan');
+      var fanInfo = htmlParser.parseAlbumInfo(html, 'https://bandcamp.com/namtah');
+      expect(ajv.validate('fan-info', fanInfo)).toBe(true);
     });
 
   });

@@ -1,0 +1,184 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "collectionitem": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+
+        "tralbum_type": { "type": "string" },
+        "item_type": { "type": "string" },
+        "item_title": { "type": "string" },
+        "item_url": { "type": "string", "format": "uri" },
+        "band_name": { "type": "string" },
+
+        "num_streamable_tracks": { "type": "integer"},
+        "item_id": { "type": "integer"},
+        "item_art_id": { "type": "integer"},
+        "tralbum_id": { "type": "integer"},
+        "band_id": { "type": "integer"},
+        "also_collected_count": { "type": "integer"},
+
+        "is_subscriber_only": { "type": "boolean" },
+        "is_giftable": { "type": "boolean" },
+        "is_purchasable": { "type": "boolean" },
+        "featured_track_is_custom": { "type": "boolean" },
+        "is_private": { "type": "boolean" },
+
+        "featured_track_title": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "string" }
+          ]},
+        "band_location": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "string" }
+          ]},
+        "why": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "string" }
+          ]},
+        "gift_sender_name": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "string" }
+          ]},
+        "service_name": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "string" }
+          ]},
+        "gift_recipient_name": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "string" }
+          ]},
+        "gift_sender_note": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "string" }
+          ]},
+        "sale_item_type": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "string" }
+          ]},
+        "service_url_fragment": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "string" }
+          ]},
+
+        "featured_track_url": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "string", "format": "uri" }
+          ]},
+
+        "featured_track": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "integer" }
+          ]},
+        "album_id": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "integer" }
+          ]},
+        "sale_item_id": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "integer" }
+          ]},
+        "band_image_id": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "integer" }
+          ]},
+        "release_count": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "integer" }
+          ]},
+        "message_count": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "integer" }
+          ]},
+        "gift_id": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "integer" }
+          ]},
+
+        "is_subscription_item": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "boolean" }
+          ]},
+        "hidden": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "boolean" }
+          ]},
+
+        "url_hints": { "type": "object", "additionalProperties": true },
+
+        "package_details": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "object", "additionalProperties": true }
+          ]}
+
+      },
+      "required": [ "item_id", "item_title", "item_url", "band_name" ]
+    }
+  },
+  "title" : "fan-info",
+  "description" : "The JSON schema that matches fan info.",
+  "id": "https://mastert.github.io/bandcamp-scraper/schemas/fan-info.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+
+    "username":{ "type": "string" },
+    "name":{ "type": "string" },
+    "location":{ "type": "string" },
+    "raw_location":{ "type": "string" },
+
+    "followers_count": { "type": "integer"}, 
+    "following_bands_count": { "type": "integer"}, 
+    "following_fans_count": { "type": "integer"}, 
+    "subscriptions_count": { "type": "integer"}, 
+    "fan_id": { "type": "integer"}, 
+
+    "trackpipe_url": { "type": "string", "format": "uri" },
+    "fanbiopic": { "type": "string", "format": "uri" },
+
+    "bio": {
+      "oneOf": [
+        { "type": "null" },
+        { "type": "string" }
+      ]},
+
+    "website_url": {
+      "oneOf": [
+        { "type": "null" },
+        { "type": "string", "format": "uri" }
+      ]},
+
+    "is_own_page": {
+      "oneOf": [
+        { "type": "null" },
+        { "type": "boolean" }
+      ]},
+
+    "collection": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/collectionitem" }
+    }
+  },
+  "required": [ "username", "name", "fan_id"]
+}

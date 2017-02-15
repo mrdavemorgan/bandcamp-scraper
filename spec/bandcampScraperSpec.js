@@ -53,6 +53,12 @@ var albumUrls = [
   'https://macdemarco.bandcamp.com/album/rock-and-roll-night-club-2'
 ];
 
+var fanUrls = [
+  'https://bandcamp.com/namtah',
+  'https://bandcamp.com/andreapetrovic',
+  'https://bandcamp.com/oscarhardwick',
+  'https://bandcamp.com/iamhashbrown'
+];
 
 function sample(array) {
   var index = Math.floor(Math.random() * (array.length));
@@ -135,6 +141,22 @@ describe("bandcamp-scraper", function () {
         if (albumFans) console.log('albumProducts', albumFans);
         expect(error).toBeNull();
         expect(Array.isArray(albumFans)).toBe(false);
+        done();
+        // TODO validate with JSON schema
+      }));
+    });
+  });
+
+  describe("getFanInfo", function () {
+    it("scrape fan info", function (done) {
+      var fanUrl = sample(fanUrls);
+      expect(bandcamp.getFanInfo(fanUrl, function (error, fanInfo) {
+        console.log('fanUrl', fanUrl);
+        if (error) console.log('error', error);
+        if (fanInfo) console.log('fanInfo', fanInfo);
+        expect(error).toBeNull();
+        expect(fanInfo).not.toBeNull();
+        expect(typeof fanInfo).toEqual('object');
         done();
         // TODO validate with JSON schema
       }));
