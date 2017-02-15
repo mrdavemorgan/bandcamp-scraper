@@ -14,6 +14,7 @@ The scraper allow you to:
 - get album urls from an artist url
 - get album info from an album url
 - get album products from an album url
+- get album fans from an album url
 
 
 #### Why ?
@@ -149,6 +150,35 @@ bandcamp.getAlbumInfo(albumUrl, function(error, albumInfo) {
 ```
 
 [View example with output](examples/getAlbumInfo.js).
+
+
+### `getAlbumFans(albumUrl, callback)`
+
+Retrieves the album's fan set from its URL.
+
+- albumUrl *String*
+- callback *Function(error, albumInfo)*
+
+#### Album Fans Set
+
+An *Object* that represents the album's fans. It matches the [album-fans JSON schema](/schemas/album-fans.json).
+
+#### Example
+
+```js
+var bandcamp = require('bandcamp-scraper');
+
+var albumUrl = 'http://musique.coeurdepirate.com/album/blonde';
+bandcamp.getAlbumFans(albumUrl, function(error, albumFans) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(albumFans);
+  }
+});
+```
+
+[View example with output](examples/getAlbumFans.js).
 
 
 ## Test

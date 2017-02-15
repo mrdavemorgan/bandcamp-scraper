@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "username": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "item_type": { "type": "string" },
+        "why": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "string" }
+          ]},
+        "fan_id": { "type": "integer"},
+        "featured_track_id": { 
+          "oneOf": [
+            { "type": "null" },
+            { "type": "integer" }
+          ]},
+        "image_id": { "type": "integer"},
+        "item_id": { "type": "integer"},
+        "purchase_date": { "type": "string" },
+        "is_montage_image": { "type": "boolean" }
+      },
+      "required": [ "name", "url", "username", "why" ]
+    }
+  },
+  "title" : "album-fans",
+  "description" : "The JSON schema that matches album fans collection info.",
+  "id": "https://mastert.github.io/bandcamp-scraper/schemas/album-fans.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "more_thumbs_available":{ "type": "boolean" },
+    "more_reviews_available":{ "type": "boolean" },
+    "band_thanks_text":{ "type": "string" },
+    "reviews": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/review" }
+    },
+    "thumbs": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/review" }
+    }
+  },
+  "required": [ "reviews", "thumbs" ]
+}

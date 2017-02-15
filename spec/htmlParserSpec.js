@@ -8,6 +8,7 @@ var ajv = new Ajv();
 ajv.addSchema(require('../schemas/search-result.json'), 'search-result');
 ajv.addSchema(require('../schemas/album-product.json'), 'album-product');
 ajv.addSchema(require('../schemas/album-info.json'), 'album-info');
+ajv.addSchema(require('../schemas/album-fans.json'), 'album-fans');
 
 function fixture(filename) {
   var filepath = path.join(__dirname, 'fixtures', filename + '.html');
@@ -81,6 +82,16 @@ describe("htmlParser", function () {
       albumProducts.forEach(function (product) {
         expect(ajv.validate('album-product', product)).toBe(true);
       });
+    });
+
+  });
+
+  describe("parseAlbumFans", function () {
+
+    it("parse album fans", function () {
+      var html = fixture('album');
+      var albumFams = htmlParser.parseAlbumFans(html, 'http://musique.coeurdepirate.com/album/blonde');
+      expect(ajv.validate('album-fans', albumFams)).toBe(true);
     });
 
   });

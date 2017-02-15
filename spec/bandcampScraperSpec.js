@@ -126,4 +126,19 @@ describe("bandcamp-scraper", function () {
     });
   });
 
+  describe("getAlbumFans", function () {
+    it("scrape album fans", function (done) {
+      var albumUrl = sample(albumUrls);
+      expect(bandcamp.getAlbumFans(albumUrl, function (error, albumFans) {
+        console.log('albumUrl', albumUrl);
+        if (error) console.log('error', error);
+        if (albumFans) console.log('albumProducts', albumFans);
+        expect(error).toBeNull();
+        expect(Array.isArray(albumFans)).toBe(false);
+        done();
+        // TODO validate with JSON schema
+      }));
+    });
+  });
+
 });
